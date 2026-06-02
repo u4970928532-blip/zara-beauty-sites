@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zara Beauty Group — Phoenix, AZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Zara Beauty Group</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://zara-beauty-group.square.site/" target="_blank" class="nav-book">Book Now</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow"><span class="dot"></span> Phoenix, Arizona</p>
+    <h1>Your Brows, <span class="accent">Our Craft</span></h1>
+    <p class="hero-sub">Threading, brow artistry, waxing, facials, and skincare — delivered with precision in the heart of Phoenix.</p>
+    <div class="hero-buttons">
+      <a href="https://zara-beauty-group.square.site/" target="_blank" class="btn btn-primary">Book an Appointment</a>
+      <a href="services.html" class="btn btn-outline">View Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES PREVIEW -->
+<section class="services-preview">
+  <div class="section-narrow">
+    <p class="section-label reveal">Our Specialties</p>
+    <h2 class="section-title reveal">What We Do Best</h2>
+    <p class="section-desc reveal">Each service is crafted to enhance your natural features with expert technique and premium products.</p>
+    <div class="preview-grid">
+      <div class="preview-card reveal">
+        <div class="icon">✦</div>
+        <h3>Threading</h3>
+        <p>Precision threading for brows, face, and beyond. The cleanest lines with the least irritation.</p>
+      </div>
+      <div class="preview-card reveal">
+        <div class="icon">◈</div>
+        <h3>Brow Tinting</h3>
+        <p>Semi-permanent color customized to your tone. Fuller, defined brows that last for weeks.</p>
+      </div>
+      <div class="preview-card reveal">
+        <div class="icon">❋</div>
+        <h3>Facials & Skincare</h3>
+        <p>Deep-cleansing, hydrating, and rejuvenating treatments tailored to your skin's unique needs.</p>
+      </div>
+    </div>
+    <div style="margin-top:32px" class="reveal">
+      <a href="services.html" class="btn btn-outline">All Services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT MINI -->
+<section class="about-mini">
+  <div class="about-mini-grid">
+    <div class="about-mini-visual reveal">✦</div>
+    <div class="reveal">
+      <p class="section-label">Who We Are</p>
+      <h2 class="section-title">Beauty, built on precision</h2>
+      <p class="section-desc" style="margin-bottom:20px">Zara Beauty Group is a Phoenix-based studio specializing in threading, brow styling, waxing, and skincare. We focus on technique, not trends — every service is tailored to you.</p>
+      <a href="about.html" class="btn btn-outline">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <h2 class="reveal">Ready to look your best?</h2>
+  <p class="reveal">Appointments available Monday through Friday, 9 AM – 5 PM.</p>
+  <a href="https://zara-beauty-group.square.site/" target="_blank" class="btn btn-primary reveal">Book Now</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">Zara Beauty Group</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Phoenix, AZ · Mon–Fri 9 AM – 5 PM</span>
+    <span>© 2025 Zara Beauty Group</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('mobileToggle')?.addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
