@@ -485,6 +485,7 @@ footer .footer-links a {
 <nav id="navbar">
   <a href="#" class="logo">Zara Beauty Group</a>
   <div class="nav-links" id="navLinks">
+    <a href="#" class="active">Home</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#location">Location</a>
@@ -648,6 +649,11 @@ toggle.addEventListener('click', () => {
 });
 links.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => links.classList.remove('open'));
+});
+document.addEventListener('click', e => {
+  if (links.classList.contains('open') && !links.contains(e.target) && !toggle.contains(e.target)) {
+    links.classList.remove('open');
+  }
 });
 
 // Scroll reveal

@@ -114,6 +114,12 @@ document.getElementById('mobileToggle')?.addEventListener('click', function() {
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
 });
+document.addEventListener('click', function(e) {
+  var nl = document.getElementById('navLinks');
+  if (nl.classList.contains('open') && !nl.contains(e.target) && !document.getElementById('mobileToggle').contains(e.target)) {
+    nl.classList.remove('open');
+  }
+});
 const obs = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
