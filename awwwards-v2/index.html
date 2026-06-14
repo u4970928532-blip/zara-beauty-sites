@@ -126,69 +126,78 @@ img { display: block; width: 100%; height: auto; }
 }
 .nav-links a:hover::after { width: 100%; }
 
-/* Hamburger */
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: none;
-  padding: 8px;
-  z-index: 102;
-}
-.nav-toggle span {
-  display: block;
-  width: 24px;
-  height: 1.5px;
-  background: currentColor;
-  transition: transform 0.4s var(--ease-out-expo), opacity 0.3s;
-}
-.nav-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.nav-toggle.active span:nth-child(2) { opacity: 0; }
-.nav-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-/* Mobile overlay */
-.nav-overlay {
+/* Mobile Menu Button (standalone, outside nav to avoid mix-blend-mode stacking issues) */
+.mobile-menu-btn {
   display: none;
   position: fixed;
-  inset: 0;
-  background: var(--ink);
-  z-index: 101;
+  top: 20px; right: 24px;
+  z-index: 200;
   flex-direction: column;
-  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 10px;
+  background: none;
+  border: none;
+}
+.mobile-menu-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--parchment);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 32px;
+  align-items: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s var(--ease-out-expo), visibility 0.5s;
+  transition: all 0.4s ease;
 }
-.nav-overlay.open {
+.mobile-menu.active {
   opacity: 1;
   visibility: visible;
 }
-.nav-overlay a {
+.mobile-menu-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 5%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+.mobile-menu-close svg {
+  width: 30px;
+  height: 30px;
+  stroke: var(--ink);
+}
+.mobile-menu-links {
+  list-style: none;
+  text-align: center;
+}
+.mobile-menu-links li {
+  margin-bottom: 1.5rem;
+}
+.mobile-menu-links a {
   font-family: var(--serif);
-  font-size: clamp(28px, 6vw, 48px);
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  color: var(--parchment);
-  position: relative;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo), color 0.3s;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.3s;
 }
-.nav-overlay.open a {
-  opacity: 1;
-  transform: translateY(0);
+.mobile-menu-links a:hover {
+  color: var(--rose-dark);
 }
-.nav-overlay.open a:nth-child(1) { transition-delay: 0.1s; }
-.nav-overlay.open a:nth-child(2) { transition-delay: 0.15s; }
-.nav-overlay.open a:nth-child(3) { transition-delay: 0.2s; }
-.nav-overlay.open a:nth-child(4) { transition-delay: 0.25s; }
-.nav-overlay.open a:nth-child(5) { transition-delay: 0.3s; }
-.nav-overlay.open a:nth-child(6) { transition-delay: 0.35s; }
-.nav-overlay a:hover { color: var(--rose); }
 
 /* ── HERO ────────────────────────────────────── */
 .hero {
@@ -865,8 +874,7 @@ section { position: relative; }
 @media (max-width: 640px) {
   .nav { padding: 20px 24px; }
   .nav-links { display: none; }
-  .nav-toggle { display: flex; }
-  .nav-overlay { display: flex; }
+  .mobile-menu-btn { display: flex; }
   .hero-content { padding: 0 24px; }
   .about { padding: 80px 24px; }
   .services { padding: 80px 24px; }
@@ -916,13 +924,27 @@ section { position: relative; }
 <div class="cursor"></div>
 <div class="cursor-follower"></div>
 
-<!-- Mobile Overlay -->
-<div class="nav-overlay" id="navOverlay">
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#expertise">Expertise</a>
-  <a href="#location">Location</a>
-  <a href="https://zara-beauty-group.square.site/" target="_blank">Book Now</a>
+<!-- Mobile Menu Button (outside nav for z-index independence) -->
+<div class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 6L6 18M6 6l12 12"/>
+    </svg>
+  </button>
+  <ul class="mobile-menu-links">
+    <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
+    <li><a href="#services" onclick="toggleMobileMenu()">Services</a></li>
+    <li><a href="#expertise" onclick="toggleMobileMenu()">Expertise</a></li>
+    <li><a href="#location" onclick="toggleMobileMenu()">Location</a></li>
+    <li><a href="https://zara-beauty-group.square.site/" target="_blank" onclick="toggleMobileMenu()">Book Now</a></li>
+  </ul>
 </div>
 
 <!-- Navigation -->
@@ -935,9 +957,6 @@ section { position: relative; }
     <li><a href="#location" data-hover>Location</a></li>
     <li><a href="https://zara-beauty-group.square.site/" target="_blank" data-hover>Book Now</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
 <!-- Hero -->
@@ -1292,22 +1311,11 @@ document.querySelectorAll('[data-hover], a, button').forEach(el => {
 });
 
 // ── MOBILE MENU ─────────────────────────────────
-const navToggle = document.getElementById('navToggle');
-const navOverlay = document.getElementById('navOverlay');
-
-navToggle.addEventListener('click', () => {
-  navToggle.classList.toggle('active');
-  navOverlay.classList.toggle('open');
-  document.body.style.overflow = navOverlay.classList.contains('open') ? 'hidden' : '';
-});
-
-navOverlay.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    navToggle.classList.remove('active');
-    navOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
+function toggleMobileMenu() {
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileMenu.classList.toggle('active');
+  document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
 
 // ── SCROLL REVEAL ───────────────────────────────
 const revealObserver = new IntersectionObserver((entries) => {
