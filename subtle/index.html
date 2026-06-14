@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zara Beauty Group — Phoenix, AZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-cream: #FDF8F4;
+  --color-blush: #F2D7D5;
+  --color-rose: #C4868C;
+  --color-deep-rose: #9E5A63;
+  --color-gold: #C9A96E;
+  --color-gold-light: #E2D1A5;
+  --color-charcoal: #2C2C2C;
+  --color-warm-gray: #6B6560;
+  --color-light-gray: #F5F0EB;
+  --color-white: #FFFFFF;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'DM Sans', -apple-system, sans-serif;
+  --max-width: 1200px;
+  --section-padding: 100px 24px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-charcoal);
+  background: var(--color-cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 24px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+nav.scrolled {
+  padding: 14px 40px;
+  background: rgba(253,248,244,0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+nav .logo {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-charcoal);
+  text-decoration: none;
+}
+nav .nav-links { display: flex; gap: 32px; align-items: center; }
+nav .nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-warm-gray);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+nav .nav-links a:hover { color: var(--color-deep-rose); }
+nav .nav-links .book-btn {
+  background: var(--color-deep-rose);
+  color: var(--color-white);
+  padding: 10px 24px;
+  border-radius: 4px;
+  transition: background 0.3s, transform 0.2s;
+}
+nav .nav-links .book-btn:hover {
+  background: var(--color-rose);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-toggle span {
+  display: block; width: 22px; height: 2px;
+  background: var(--color-charcoal);
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  background: linear-gradient(160deg, var(--color-cream) 0%, var(--color-blush) 50%, var(--color-light-gray) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -50%; right: -30%;
+  width: 80vw; height: 80vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+}
+.hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-rose);
+  margin-bottom: 20px;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-charcoal);
+  max-width: 700px;
+  margin-bottom: 24px;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--color-deep-rose);
+}
+.hero-tagline {
+  font-size: 1.1rem;
+  color: var(--color-warm-gray);
+  max-width: 480px;
+  margin-bottom: 40px;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-cta {
+  display: inline-flex; gap: 16px;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.btn {
+  display: inline-block;
+  padding: 14px 36px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: var(--color-deep-rose);
+  color: var(--color-white);
+}
+.btn-primary:hover {
+  background: var(--color-rose);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(158,90,99,0.25);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--color-charcoal);
+  border: 1.5px solid var(--color-charcoal);
+}
+.btn-outline:hover {
+  background: var(--color-charcoal);
+  color: var(--color-white);
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ABOUT ── */
+.about {
+  padding: var(--section-padding);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-visual {
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, var(--color-blush), var(--color-gold-light));
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+.about-visual::after {
+  content: '✦';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: rgba(255,255,255,0.4);
+}
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-rose);
+  margin-bottom: 16px;
+}
+.about h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.about p {
+  color: var(--color-warm-gray);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+/* ── SERVICES ── */
+.services {
+  padding: var(--section-padding);
+  background: var(--color-white);
+}
+.services-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+.services h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+.services .section-sub {
+  color: var(--color-warm-gray);
+  max-width: 500px;
+  margin: 0 auto 60px;
+  font-size: 0.95rem;
+}
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  text-align: left;
+}
+.service-card {
+  padding: 40px 32px;
+  background: var(--color-cream);
+  border-radius: 4px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+.service-icon {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--color-blush);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: var(--color-deep-rose);
+}
+.service-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.service-card p {
+  color: var(--color-warm-gray);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ── BROW SPECIALTIES ── */
+.brow-specialties {
+  padding: var(--section-padding);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.brow-specialties h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.brow-specialties .section-sub {
+  color: var(--color-warm-gray);
+  max-width: 500px;
+  margin: 0 auto 60px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+.brow-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.brow-card {
+  padding: 48px 40px;
+  border: 1.5px solid var(--color-blush);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.brow-card:hover {
+  border-color: var(--color-deep-rose);
+  background: var(--color-white);
+}
+.brow-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.brow-card p {
+  color: var(--color-warm-gray);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  padding: 100px 24px;
+  text-align: center;
+  background: var(--color-charcoal);
+  color: var(--color-white);
+}
+.cta-banner h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+.cta-banner p {
+  color: var(--color-gold-light);
+  max-width: 480px;
+  margin: 0 auto 36px;
+  font-size: 1rem;
+}
+.cta-banner .btn-primary {
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+}
+.cta-banner .btn-primary:hover {
+  background: var(--color-gold-light);
+}
+
+/* ── LOCATION ── */
+.location {
+  padding: var(--section-padding);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.location h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+.location-info { display: flex; flex-direction: column; gap: 28px; }
+.info-block h4 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-rose);
+  margin-bottom: 8px;
+}
+.info-block p, .info-block a {
+  color: var(--color-warm-gray);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  text-decoration: none;
+}
+.info-block a:hover { color: var(--color-deep-rose); }
+.location-map {
+  aspect-ratio: 16/10;
+  background: var(--color-light-gray);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-warm-gray);
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+}
+.location-map iframe {
+  width: 100%; height: 100%; border: 0; border-radius: 4px;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 60px 40px;
+  background: var(--color-charcoal);
+  color: var(--color-warm-gray);
+  text-align: center;
+}
+footer .footer-logo {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-white);
+  margin-bottom: 16px;
+}
+footer p {
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+footer a {
+  color: var(--color-gold-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+footer a:hover { color: var(--color-gold); }
+footer .footer-links {
+  display: flex; gap: 24px; justify-content: center;
+  margin: 20px 0;
+}
+footer .footer-links a {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%;
+    width: 280px; height: 100vh;
+    background: var(--color-cream);
+    flex-direction: column;
+    padding: 80px 40px 40px;
+    gap: 24px;
+    transition: right 0.3s ease;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+  }
+  .nav-links.open { right: 0; }
+  .nav-toggle { display: block; }
+  .hero h1 { font-size: 2.4rem; }
+  .about { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+  .about-visual { max-height: 300px; }
+  .service-grid { grid-template-columns: 1fr; }
+  .brow-grid { grid-template-columns: 1fr; }
+  .location { grid-template-columns: 1fr; gap: 40px; }
+  .hero-cta { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">Zara Beauty Group</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#location">Location</a>
+    <a href="https://zara-beauty-group.square.site/" target="_blank" class="book-btn">Book Now</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-subtitle">Phoenix, Arizona</p>
+  <h1>Precision Beauty, <em>Redefined</em></h1>
+  <p class="hero-tagline">Expert threading, brow artistry, waxing, and skincare — tailored to enhance your natural beauty.</p>
+  <div class="hero-cta">
+    <a href="https://zara-beauty-group.square.site/" target="_blank" class="btn btn-primary">Book an Appointment</a>
+    <a href="#services" class="btn btn-outline">Explore Services</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual"></div>
+  <div class="reveal">
+    <p class="section-label">Our Story</p>
+    <h2>Where artistry meets precision</h2>
+    <p>Zara Beauty Group is a Phoenix-based beauty studio dedicated to the craft of threading, brow styling, and skincare. We believe that great beauty work starts with understanding each client's unique features — not following trends, but perfecting technique.</p>
+    <p>From the cleanest brow shaping to customized facial treatments, every service is performed with care, precision, and attention to detail. Our goal is simple: help you feel like the best version of yourself.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <p class="section-label reveal">What We Do</p>
+    <h2 class="reveal">Our Services</h2>
+    <p class="section-sub reveal">Specialized treatments delivered with skill and care in our Phoenix studio.</p>
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">✦</div>
+        <h3>Threading</h3>
+        <p>Precision threading for brows, upper lip, chin, and full face. Clean, sharp lines with minimal irritation — the gold standard of hair removal.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">◈</div>
+        <h3>Brow Tinting</h3>
+        <p>Semi-permanent color that defines and fills your brows for weeks. We match the perfect shade to complement your skin tone and hair color.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">◇</div>
+        <h3>Waxing</h3>
+        <p>Professional waxing for face and body using premium, skin-friendly waxes. Smooth, lasting results with careful aftercare guidance.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">❋</div>
+        <h3>Skincare</h3>
+        <p>Personalized skincare treatments addressing acne, hyperpigmentation, texture, and more. Customized plans to keep your skin healthy and glowing.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">✧</div>
+        <h3>Facial Treatments</h3>
+        <p>Deep-cleansing, hydrating, and rejuvenating facials tailored to your skin type. Relaxation meets results in every session.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">◆</div>
+        <h3>Brow Styling</h3>
+        <p>Complete brow architecture — shaping, grooming, and styling to frame your face. From natural enhancement to bold definition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BROW SPECIALTIES -->
+<section class="brow-specialties">
+  <p class="section-label reveal" style="text-align:center">Signature Expertise</p>
+  <h2 class="reveal">The Art of Brows</h2>
+  <p class="section-sub reveal">Brows are our specialty. Every shape is designed to complement your face — not follow a one-size-fits-all template.</p>
+  <div class="brow-grid">
+    <div class="brow-card reveal">
+      <h3>Custom Brow Mapping</h3>
+      <p>Using precise measurements tailored to your bone structure, we map the ideal arch, thickness, and length before any hair is touched. The result is symmetry that looks effortless.</p>
+    </div>
+    <div class="brow-card reveal">
+      <h3>Color Matching & Tinting</h3>
+      <p>We custom-mix tint shades to match your complexion and preferences. Whether you want subtle definition or a fuller look, the color lasts 3–6 weeks.</p>
+    </div>
+    <div class="brow-card reveal">
+      <h3>Threading Technique</h3>
+      <p>Our threading specialists use the single-thread method for maximum precision. This ancient technique gives cleaner results than tweezing and is gentler than waxing on sensitive skin.</p>
+    </div>
+    <div class="brow-card reveal">
+      <h3>Brow Maintenance Plans</h3>
+      <p>Keep your brows in perfect shape with regular maintenance visits. We'll track your growth pattern and adjust your plan as your brows evolve.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <h2 class="reveal">Ready for your best brows?</h2>
+  <p class="reveal">Book your appointment online — it only takes a minute.</p>
+  <a href="https://zara-beauty-group.square.site/" target="_blank" class="btn btn-primary reveal">Book Now</a>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+  <div class="reveal">
+    <p class="section-label">Visit Us</p>
+    <h2>In the heart of Phoenix</h2>
+    <div class="location-info">
+      <div class="info-block">
+        <h4>Hours</h4>
+        <p>Monday – Friday<br>9:00 AM – 5:00 PM</p>
+      </div>
+      <div class="info-block">
+        <h4>Contact</h4>
+        <a href="mailto:zarabeautygroup@gmail.com">zarabeautygroup@gmail.com</a>
+      </div>
+      <div class="info-block">
+        <h4>Location</h4>
+        <p>Phoenix, AZ</p>
+      </div>
+      <div class="info-block">
+        <h4>Appointments</h4>
+        <a href="https://zara-beauty-group.square.site/" target="_blank">Book Online →</a>
+      </div>
+    </div>
+  </div>
+  <div class="location-map reveal">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105549.3966005023!2d-112.143222!3d33.4942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b12eb4a6bb305%3A0x44b76911197e6e83!2sPhoenix%2C%20AZ!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Zara Beauty Group</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#location">Location</a>
+    <a href="https://zara-beauty-group.square.site/" target="_blank">Book</a>
+  </div>
+  <p>Mon – Fri, 9 AM – 5 PM · Phoenix, AZ</p>
+  <p style="margin-top:8px"><a href="mailto:zarabeautygroup@gmail.com">zarabeautygroup@gmail.com</a></p>
+  <p style="margin-top:24px; font-size:0.75rem; opacity:0.5">© 2025 Zara Beauty Group. All rights reserved.</p>
+</footer>
+
+<script>
+// Nav scroll behavior
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile menu toggle
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  links.classList.toggle('open');
+});
+links.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => links.classList.remove('open'));
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

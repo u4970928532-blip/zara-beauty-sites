@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Zara Beauty Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Zara Beauty Group</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://zara-beauty-group.square.site/" target="_blank" class="nav-book">Book Now</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="section-narrow">
+    <p class="section-label reveal">About Us</p>
+    <h1 class="section-title reveal" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:12px">Built on precision, driven by care</h1>
+    <p class="section-desc reveal" style="margin:0 auto">Zara Beauty Group is a Phoenix-based beauty studio where expert technique meets genuine attention to every client.</p>
+  </div>
+</section>
+
+<!-- ABOUT CONTENT -->
+<section class="section" style="background:var(--warm-white)">
+  <div class="about-content">
+
+    <div class="reveal">
+      <h3>Our Approach</h3>
+      <p>We believe that great beauty work starts with understanding — understanding your features, your skin, and what you actually want. At Zara Beauty Group, there are no cookie-cutter templates. Every brow shape is mapped to your face. Every facial is chosen for your skin type. Every service is performed with deliberate skill.</p>
+      <p>Our studio specializes in the techniques that demand real craftsmanship: threading, brow tinting, waxing, and skincare. These aren't afterthoughts for us — they're the core of what we do, and we've built our practice around doing them exceptionally well.</p>
+    </div>
+
+    <div class="reveal">
+      <h3>Why Threading?</h3>
+      <p>Threading is one of the oldest and most precise hair removal techniques in the world. It uses a single cotton thread to lift hair from the follicle, giving you cleaner lines than tweezing and gentler treatment than waxing — especially on the delicate skin around your brows and face. It's our signature service for a reason: nothing else delivers the same level of definition.</p>
+    </div>
+
+    <div class="reveal">
+      <h3>Our Studio</h3>
+      <p>Located in Phoenix, AZ, our studio is designed to be a calm, welcoming space where you can relax while we take care of the details. We keep things simple: skilled hands, quality products, and a focus on getting the job done right.</p>
+    </div>
+
+    <div class="values-grid reveal">
+      <div class="value-card">
+        <div class="value-icon">✦</div>
+        <h4>Precision</h4>
+        <p>Every stroke, every thread, every line is intentional. We measure, map, and craft — never guess.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">◈</div>
+        <h4>Personalization</h4>
+        <p>Your face is unique. Your beauty services should be too. Every treatment starts with understanding you.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">❋</div>
+        <h4>Care</h4>
+        <p>Skin health matters. We use quality products, follow proper technique, and always consider your comfort.</p>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:48px; text-align:center; padding:48px 32px; background:var(--cream); border-radius:12px;">
+      <h3 style="margin-top:0">Ready to experience the difference?</h3>
+      <p style="margin-bottom:24px">Book your appointment and see what precision beauty feels like.</p>
+      <a href="https://zara-beauty-group.square.site/" target="_blank" class="btn btn-primary">Book Now</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">Zara Beauty Group</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Phoenix, AZ · Mon–Fri 9 AM – 5 PM</span>
+    <span>© 2025 Zara Beauty Group</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('mobileToggle')?.addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

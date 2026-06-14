@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Zara Beauty Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Zara Beauty Group</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="https://zara-beauty-group.square.site/" target="_blank" class="nav-book">Book Now</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="services-hero">
+  <div class="section-narrow">
+    <p class="section-label reveal">Get in Touch</p>
+    <h1 class="section-title reveal" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:12px">We'd love to hear from you</h1>
+    <p class="section-desc reveal" style="margin:0 auto">Questions about services, pricing, or availability? Reach out — or book directly online.</p>
+  </div>
+</section>
+
+<!-- CONTACT GRID -->
+<section class="section" style="background:var(--warm-white); padding-bottom:0">
+  <div class="contact-grid">
+    <!-- Info Cards -->
+    <div class="contact-info-cards reveal">
+      <div class="info-card">
+        <h4>Hours</h4>
+        <p>Monday – Friday<br>9:00 AM – 5:00 PM</p>
+      </div>
+      <div class="info-card">
+        <h4>Email</h4>
+        <p><a href="mailto:zarabeautygroup@gmail.com">zarabeautygroup@gmail.com</a></p>
+      </div>
+      <div class="info-card">
+        <h4>Location</h4>
+        <p>Phoenix, AZ</p>
+      </div>
+      <div class="info-card">
+        <h4>Book Online</h4>
+        <p><a href="https://zara-beauty-group.square.site/" target="_blank">zara-beauty-group.square.site →</a></p>
+      </div>
+      <div class="map-placeholder">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105549.3966005023!2d-112.143222!3d33.4942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b12eb4a6bb305%3A0x44b76911197e6e83!2sPhoenix%2C%20AZ!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form reveal">
+      <p class="section-label">Send Us a Message</p>
+      <h3 class="section-title" style="font-size:1.4rem; margin-bottom:24px">Quick Inquiry</h3>
+      <form onsubmit="event.preventDefault(); alert('Thank you! We\'ll get back to you soon.');">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="service">Service Interest</label>
+          <select id="service" name="service">
+            <option value="">Select a service…</option>
+            <option value="threading">Threading</option>
+            <option value="brow-tinting">Brow Tinting</option>
+            <option value="waxing">Waxing</option>
+            <option value="facials">Facial Treatments</option>
+            <option value="skincare">Skincare</option>
+            <option value="brow-styling">Brow Styling</option>
+            <option value="other">Other / General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what you're looking for…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip" style="margin-top:80px">
+  <h2 class="reveal">Prefer to book directly?</h2>
+  <p class="reveal">Skip the form — schedule your appointment in seconds.</p>
+  <a href="https://zara-beauty-group.square.site/" target="_blank" class="btn btn-primary reveal">Book Online →</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">Zara Beauty Group</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Phoenix, AZ · Mon–Fri 9 AM – 5 PM</span>
+    <span>© 2025 Zara Beauty Group</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('mobileToggle')?.addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

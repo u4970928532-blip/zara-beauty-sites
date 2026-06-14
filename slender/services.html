@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Zara Beauty Group</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3d3d3d;
+            --blush: #e8b4b8;
+            --rose: #c48b9f;
+            --cream: #fdf8f5;
+            --lavender: #f0e6eb;
+            --gold: #d4a574;
+            --text: #4a4a4a;
+            --text-light: #7a7a7a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--cream);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(253, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--primary);
+            text-decoration: none;
+            font-style: italic;
+        }
+
+        .logo span {
+            color: var(--rose);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blush);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--rose);
+        }
+
+        .nav-cta {
+            background: var(--blush) !important;
+            color: var(--primary) !important;
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+        }
+
+        .nav-cta:hover {
+            background: var(--rose) !important;
+            color: white !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-menu-btn span {
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 5% 5rem;
+            background: linear-gradient(135deg, var(--lavender) 0%, var(--cream) 100%);
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            color: var(--rose);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            max-width: 550px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 6rem 5%;
+        }
+
+        .services-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--blush);
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--blush) 0%, var(--rose) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: white;
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .service-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 2rem;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: white;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .service-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .service-duration {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-duration svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--rose);
+            fill: none;
+        }
+
+        .service-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--rose);
+            min-width: 80px;
+            text-align: right;
+        }
+
+        /* Special Offer Banner */
+        .special-offer {
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--blush) 0%, var(--rose) 100%);
+            border-radius: 24px;
+            margin: 4rem 5%;
+            text-align: center;
+            color: white;
+        }
+
+        .special-offer h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .special-offer p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            padding: 1rem 2.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-family: 'Quicksand', sans-serif;
+            background: white;
+            color: var(--rose);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--cream);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 5%;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-menu-links a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5% 2rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .service-item {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                text-align: center;
+            }
+
+            .service-price {
+                text-align: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .special-offer {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Zara <span>Beauty</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://zara-beauty-group.square.site/" target="_blank" class="nav-cta">Book Now</a></li>
+        </ul>
+        <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        <ul class="mobile-menu-links">
+            <li><a href="index.html" onclick="toggleMobileMenu()">Home</a></li>
+            <li><a href="services.html" onclick="toggleMobileMenu()">Services</a></li>
+            <li><a href="gallery.html" onclick="toggleMobileMenu()">Gallery</a></li>
+            <li><a href="contact.html" onclick="toggleMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <section class="page-header">
+        <p class="section-label">Our Offerings</p>
+        <h1 class="page-title">Services</h1>
+        <p class="page-subtitle">Discover our comprehensive range of beauty treatments designed to help you look and feel your best.</p>
+    </section>
+
+    <section class="services-section">
+        <div class="services-container">
+            <!-- Threading Services -->
+            <div class="service-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="5"/>
+                            <path d="M3 21a9 9 0 0 1 18 0"/>
+                        </svg>
+                    </div>
+                    <h2 class="category-title">Threading Services</h2>
+                </div>
+                <div class="services-list">
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Eyebrow Threading</h3>
+                            <p class="service-description">Precision shaping for perfectly defined brows</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            15 mins
+                        </div>
+                        <span class="service-price">$12</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Upper Lip Threading</h3>
+                            <p class="service-description">Clean, smooth upper lip area</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            10 mins
+                        </div>
+                        <span class="service-price">$8</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Chin Threading</h3>
+                            <p class="service-description">Define your chin line perfectly</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            10 mins
+                        </div>
+                        <span class="service-price">$10</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Full Face Threading</h3>
+                            <p class="service-description">Complete facial hair removal including brows, forehead, upper lip, chin, and sides</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            30 mins
+                        </div>
+                        <span class="service-price">$35</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Full Face + Brow Tinting</h3>
+                            <p class="service-description">Full-face threading with professional brow tinting</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            30 mins
+                        </div>
+                        <span class="service-price">$60</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brow Services -->
+            <div class="service-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h2 class="category-title">Brow Services</h2>
+                </div>
+                <div class="services-list">
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Brow Tinting</h3>
+                            <p class="service-description">Enhance and define brows with professional color</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            20 mins
+                        </div>
+                        <span class="service-price">$20</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Brow Lamination</h3>
+                            <p class="service-description">Semi-permanent brow styling for a flawless finish</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            45 mins
+                        </div>
+                        <span class="service-price">$75</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lash Services -->
+            <div class="service-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/>
+                        </svg>
+                    </div>
+                    <h2 class="category-title">Lash Services</h2>
+                </div>
+                <div class="services-list">
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Lash Lift & Tint</h3>
+                            <p class="service-description">Curl and tint natural lashes for stunning enhancement</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            45 mins
+                        </div>
+                        <span class="service-price">$75</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Lash Extensions</h3>
+                            <p class="service-description">Professional extensions for voluminous, natural-looking lashes</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            60-90 mins
+                        </div>
+                        <span class="service-price">Varies</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Facial Treatments -->
+            <div class="service-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                            <circle cx="9" cy="9" r="1"/>
+                            <circle cx="15" cy="9" r="1"/>
+                        </svg>
+                    </div>
+                    <h2 class="category-title">Facial Treatments</h2>
+                </div>
+                <div class="services-list">
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Classic Facial</h3>
+                            <p class="service-description">Deep cleansing facial tailored to your skin type</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            45-60 mins
+                        </div>
+                        <span class="service-price">$60</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Acne Facial</h3>
+                            <p class="service-description">Targeted treatment for acne-prone skin</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            45-60 mins
+                        </div>
+                        <span class="service-price">$65</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Microdermabrasion</h3>
+                            <p class="service-description">Exfoliation treatment for radiant, smooth skin</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            45 mins
+                        </div>
+                        <span class="service-price">$85</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Waxing -->
+            <div class="service-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h2 class="category-title">Body Waxing</h2>
+                </div>
+                <div class="services-list">
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Arm Waxing</h3>
+                            <p class="service-description">Full or half arm hair removal</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            30 mins
+                        </div>
+                        <span class="service-price">$30+</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Leg Waxing</h3>
+                            <p class="service-description">Full or half leg waxing service</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            30-45 mins
+                        </div>
+                        <span class="service-price">$35+</span>
+                    </div>
+                    <div class="service-item">
+                        <div>
+                            <h3 class="service-name">Brazilian Waxing</h3>
+                            <p class="service-description">Professional Brazilian waxing service</p>
+                        </div>
+                        <div class="service-duration">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            30-45 mins
+                        </div>
+                        <span class="service-price">$45+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="special-offer">
+        <h3>Threading Tuesdays & Wednesdays!</h3>
+        <p>Bring a friend and both of you receive threading services for just $16!</p>
+        <a href="https://zara-beauty-group.square.site/" class="btn" target="_blank">
+            Book Your Visit
+            <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Zara Beauty</h3>
+                <p>Your sanctuary for beauty and self-care in North Phoenix.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Threading</a></li>
+                    <li><a href="services.html">Brow Tinting</a></li>
+                    <li><a href="services.html">Facials</a></li>
+                    <li><a href="services.html">Body Waxing</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+16025485551">(602) 548-5551</a></li>
+                    <li><a href="contact.html">2340 W Bell Rd, Phoenix</a></li>
+                    <li><a href="https://zara-beauty-group.square.site/" target="_blank">Book Online</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Zara Beauty Group. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
